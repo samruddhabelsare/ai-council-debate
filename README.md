@@ -1,4 +1,4 @@
-# ⚖️ AI Council Debate: Local Deliberation Chamber
+# ⚖️ AI Council Debate: High-Fidelity Deliberation Engine
 
 <div align="center">
 
@@ -9,119 +9,107 @@
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
-**_Where Silicon Meets Sophia — Deciding the Future, One Token at a Time_**
+**_Decentralized Intelligence Meets Deterministic Rigor — A Cyber-Noir Deliberation Platform_**
 
 🧡 Code Hard &nbsp;·&nbsp; 🤍 Think Deep &nbsp;·&nbsp; 💚 Debate Fair
 
-## 🌌 Live Presence
-**Powered by Local LLMs via Ollama**
-
-[Features](#-features) · [Installation](#-installation) · [The Council](#-the-council) · [Tech Stack](#-tech-stack) · [Author](#-author)
+[Technical Docs](#-technical-architecture) · [The Council](#-logic--personalities) · [Installation](#-deployment) · [UI/UX](#-uiux-engineering) · [Author](#-author)
 
 </div>
 
 ---
 
-## 📌 Overview
+## 📌 Executive Summary
 
-**AI Council Debate** is a premium, "Cyber-Noir" themed deliberation engine built with **Streamlit** and powered by **Ollama**. It allows users to pitch complex questions to a diverse council of 17 AI agents, each with distinct psychological profiles, logical frameworks, and ideological biases.
+**AI Council Debate** is an advanced multi-agent deliberation framework designed for local LLM orchestration. Built on the **Streamlit** ecosystem and interfaced via **Ollama**, it simulates a high-stakes legislative environment where 17 distinct AI personas—each with unique cognitive biases and logical frameworks—debate user-defined paradoxes and ethical dilemmas.
 
-The interface features a sophisticated **Glassmorphism** design, real-time "Thinking" signatures, and a global scanline aesthetic that transforms your browser into a high-stakes digital courtroom.
-
-> *"Coding is Rice plate eating — I don't like Rice as much as Coding."*
-> — **Samruddha Belsare**, Lead Architect 🇮🇳
+The platform utilizes custom **CSS/JS injection** to achieve a "Cyber-Noir" aesthetic, featuring glassmorphism, animated scanlines, and real-time state-syncing thinking signatures.
 
 ---
 
-## ✨ Features
+## 🏗️ Technical Architecture
 
-### 🎭 Section 01 — The High Council (17 Agents)
-- **Diverse Perspectives**: Toggle between 17 unique agents including the **Analyst**, **Conspiracist**, **Sage**, **Devil's Advocate**, and **Futurist**.
-- **Deep Personality Prompts**: Every agent uses a "System-Level" prompt that defines their vocabulary, skepticism level, and logical priorities.
-- **Dynamic Selection**: 4-column glassmorphism grid with hover-glow effects and "Select All" capabilities.
+The system operates on an asynchronous request-response loop between the Streamlit front-end and the local Ollama inference server.
 
-### 🎙️ Section 02 — Real-Time Deliberation
-- **Thinking Signatures**: Watch agents "process" thoughts with personality-specific status logs (e.g., `[ Calculating statistical probabilities... ]`).
-- **Animated Feed**: Chat bubbles use CSS `fadeIn` and `slideUp` animations for a smooth, conversational flow.
-- **Word Limit Enforcement**: Hard-coded constraints ensure agents stay concise and impactful.
-
-### 🗳️ Section 03 — The Tally & Verdict
-- **Multi-Stance Voting**: Agents deliver `YES`, `NO`, or `NEUTRAL` verdicts.
-- **Live Report Sidebar**: Track the vote counts across multiple rounds of debate.
-- **The Judge's Decree**: In the final round, the **Judge AI** synthesizes all arguments into a definitive, gold-accented final verdict.
-
-### ⚙️ Section 04 — Chamber Configuration
-- **Model Agnostic**: Compatible with any local Ollama model (Gemma, Llama, Mistral, etc.).
-- **Debate Tuning**: Adjust word ranges, number of rounds, and specific council compositions on the fly.
-
----
-
-## 🏛️ The Council (Expanded Roster)
-
-| Agent | Trait | Primary Objective |
-|---|---|---|
-| **Analyst** | Logical | Data-driven structural precision. |
-| **Critic** | Skeptical | Finding the hidden flaw in every claim. |
-| **Sage** | Wise | Applying timeless metaphors and patterns. |
-| **Devil's Advocate** | Inverse | Stress-testing consensus at all costs. |
-| **Conspiracist** | Paranoid | Uncovering the "hidden" agenda. |
-| **Psychologist** | Analytical | Profiling the biases behind the arguments. |
-
----
-
-## 🛠️ Tech Stack
-
-| Library | Version | Purpose |
-|---|---|---|
-| `streamlit` | ≥ 1.32 | High-fidelity UI & App framework |
-| `requests` | (standard) | Communication with the local Ollama API |
-| `json` | (standard) | Context and state management |
-| `css-injection` | (custom) | Glassmorphism, Scanlines & Animations |
-
----
-
-## 📦 Installation
-
-### Prerequisites
-- [Ollama](https://ollama.com/) installed and running locally.
-- Python **3.8+**
-
-### Step 1 — Clone the Repository
-```bash
-git clone https://github.com/samruddhabelsare/ai-council-debate.git
-cd ai-council-debate
+```mermaid
+graph TD
+    User((User)) -->|Input Paradox| Frontend[Streamlit UI]
+    Frontend -->|Orchestrate| Logic[Debate Controller]
+    Logic -->|Persona Prompt| API[Ollama local API]
+    API -->|Inference| Model((LLM Engine))
+    Model -->|Generated Response| API
+    API -->|Raw Text| Logic
+    Logic -->|Regex Extract Vote| Frontend
+    Frontend -->|Render Glassmorphism| User
 ```
 
-### Step 2 — Install Dependencies
+### Key Components:
+- **Orchestration**: Manages turn-based logic, context accumulation, and word-limit enforcement.
+- **State Management**: Uses `st.session_state` to maintain a consistent "Council History" across re-runs.
+- **Inference**: High-speed local processing via Ollama, supporting models like `Gemma-2-2b` or `Llama-3-8b`.
+
+---
+
+## 🎭 Logic & Personalities
+
+Unlike standard chatbots, each council member follows a **3-Tier Personality Matrix**:
+
+1.  **Identity Layer**: Defines the core archetype (e.g., *The Historian* prefers precedent over speculation).
+2.  **Constraint Layer**: Strict word-range enforcement (60-120 words) to prevent "Model Rambling."
+3.  **Deterministic Vote Rule**: Every response is regex-parsed for exactly one tag: `[VOTE: YES]`, `[VOTE: NO]`, or `[VOTE: NEUTRAL]`.
+
+### 🏛️ The Expanded 17-Agent Council
+
+| Archetype | Cognitive Driver | Primary Focus |
+|---|---|---|
+| **The Analyst** | Logic | Statistical viability and structural integrity. |
+| **The Sage** | Wisdom | Cross-cultural metaphors and timeless patterns. |
+| **The Devil** | Inversion | Counter-consensus stress-testing. |
+| **The Conspiracist** | Skepticism | Identifying hidden power dynamics and agendas. |
+| **The Psychologist** | Behavior | Profiling the biases of other agents in the room. |
+| **The Historian** | Precedent | Comparing current dilemmas to past human failures. |
+
+---
+
+## 🎨 UI/UX Engineering (Cyber-Noir)
+
+The "Chamber" aesthetic is achieved through advanced styling techniques:
+
+- **Glassmorphism 2.0**: Utilizing `backdrop-filter: blur(12px)` and `rgba(20, 20, 30, 0.4)` for deep, translucent container depth.
+- **CRT Scanlines**: A global fixed `linear-gradient` overlay mimicking the visual texture of high-contrast cyber-noir displays.
+- **Dynamic Feedback**: speaking banners use custom-styled pulse animations and personality-specific "thinking signatures."
+- **Animated Grid**: A 4-column responsive grid featuring light-sweep animations on hover and smooth state transitions.
+
+---
+
+## 📦 Deployment & Setup
+
+### Requirements
+- **Hardware**: 8GB+ VRAM recommended (for 7B+ models) or 4GB+ for 2B models.
+- **Runtime**: Python 3.9+, [Ollama](https://ollama.com/) 0.1.32+.
+
+### Quick Start
 ```bash
+# Clone
+git clone https://github.com/samruddhabelsare/ai-council-debate.git && cd ai-council-debate
+
+# Environment
 pip install streamlit requests
-```
 
-### Step 3 — Pull your preferred Model
-```bash
+# Model Pull
 ollama pull gemma2:2b
-```
 
-### Step 4 — Run the App
-```bash
+# Launch
 streamlit run app.py
 ```
 
 ---
 
-## 🎨 Design Philosophy (Cyber-Noir)
-
-This project moves away from standard web components to create an **Immersive Atmosphere**:
-
-- **Glassmorphism**: Cards use `rgba` backgrounds with `backdrop-filter: blur()` for depth.
-- **Atmospheric Scanlines**: A global CSS overlay mimics a futuristic terminal display.
-- **Orbitron Typography**: High-tech headers for a "Command Centre" feel.
-- **Micro-Animations**: Linear-gradient "sweeps" on card hover to indicate system activity.
-
----
-
-## 📄 License
-MIT License - Copyright (c) 2026 Samruddha Belsare
+## 🔮 Future Roadmap (v2.0)
+- [ ] **Vector Context**: Integrating RAG to allow agents to "read" specific documents before debating.
+- [ ] **Cross-Agent Awareness**: Deeper cross-referencing where agents explicitly name-call and counter each other.
+- [ ] **Export Logic**: One-click PDF export of the Full Council Minutes and Tally.
+- [ ] **Dynamic Temperature**: Adjusting "Logical Chaos" (LLM Temperature) on the fly.
 
 ---
 
@@ -131,17 +119,17 @@ MIT License - Copyright (c) 2026 Samruddha Belsare
 
 **Samruddha Belsare**
 
-🇮🇳 &nbsp; India &nbsp; · &nbsp; 📅 Built on 06 March 2026
+🇮🇳 &nbsp; India &nbsp; · &nbsp; Lead Architect
 
 *"Coding is Rice plate eating — I don't like Rice as much as Coding."*
 
-Developed with ❤️ and Large Language Models (LLMs)
+Developed with ❤️ and Advanced Agentic AI.
 
 ---
 
 ### ◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈
-**AI COUNCIL DEBATE · Powered by Ambition**
-Built with Streamlit · Ollama · Pure Passion
+**AI COUNCIL DEBATE · Engineering Excellence**
+Built with Streamlit · Ollama · Determination
 🧡 Work Hard 🤍 Stay Focused 💚 Shine Bright
 ### ◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈
 
